@@ -1,5 +1,5 @@
 """
-WSGI config for latest_datascience_blogs project.
+WSGI config for datascience_blogs project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "latest_datascience_blogs.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "datascience_blogs.settings")
 
 application = get_wsgi_application()
