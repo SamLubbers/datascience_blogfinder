@@ -9,12 +9,12 @@ class DatabaseManager(object):
     def create_blogs_table(self):
         with self.con:
             self.cur.execute('''CREATE TABLE IF NOT EXISTS blogs
-                        (url text primary key, source text, title text, pub_date timestamp)''')
+                        (url text primary key, host text, title text, pub_date timestamp)''')
 
-    def insert_blog(self, url, source, title, pub_date):
+    def insert_blog(self, url, host, title, pub_date):
         try:
             with self.con:
-                self.cur.execute('''INSERT INTO blogs VALUES (?, ?, ?, ?)''',(url, source, title, pub_date))
+                self.cur.execute('''INSERT INTO blogs VALUES (?, ?, ?, ?)''', (url, host, title, pub_date))
         except sqlite3.IntegrityError:
             pass # avoid the same website from being added twice
 

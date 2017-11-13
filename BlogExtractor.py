@@ -25,7 +25,7 @@ class BlogExtractor(threading.Thread):
         for item in items:
             blog_contents = {}
             blog_contents['title'] = str(item.title.string)
-            blog_contents['link'] = str(item.link.string)
+            blog_contents['url'] = str(item.link.string)
             blog_contents['pub_date'] = str(item.pubDate.string)
             blogs.append(json.dumps(blog_contents))
         return blogs

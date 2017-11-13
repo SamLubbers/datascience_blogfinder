@@ -30,8 +30,6 @@ class Scheduler(threading.Thread):
     def signal_queue_end(self, q, sentinel):
         q.put(sentinel)
 
-    # TODO add function that reads from file if git repo causes errors
-
     def run(self):
         html = self.get_url_text(self.datascience_blogs)
         rss_urls = self.extract_rss_urls(html)
