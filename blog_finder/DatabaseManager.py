@@ -1,8 +1,11 @@
+import os
 import sqlite3
 
 class DatabaseManager(object):
     def __init__(self, db):
-        self.con = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES)
+        project_path = os.path.dirname(os.getcwd())
+        db_path = os.path.join(project_path, db)
+        self.con = sqlite3.connect(db_path, detect_types=sqlite3.PARSE_DECLTYPES)
         self.cur = self.con.cursor()
         self.create_blogs_table()
 
