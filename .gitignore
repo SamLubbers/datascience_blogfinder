@@ -1,0 +1,8 @@
+# compiled files
+__pycache__/
+
+# PyCharm project settings
+.idea/
+
+# databases
+*.sqlite
