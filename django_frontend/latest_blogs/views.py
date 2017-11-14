@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+
 def index(request):
-    return HttpResponse("Hello, you are at the latest blogs index")
+    return render(request, 'latest_blogs/blogs.html')
