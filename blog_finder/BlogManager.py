@@ -35,8 +35,8 @@ class BlogManager(threading.Thread):
 
     def recent_blog(self, blog_pubdate):
         """returns true if blog has been published less than a year ago"""
-        timzone = blog_pubdate.tzinfo
-        now_in_timezone = datetime.now(timzone)
+        timezone = blog_pubdate.tzinfo
+        now_in_timezone = datetime.now(timezone)
         one_year_ago = now_in_timezone - timedelta(days=365)
         if blog_pubdate >= one_year_ago:
             return True
@@ -57,3 +57,5 @@ class BlogManager(threading.Thread):
                                         host=blog['host'],
                                         title=blog['title'],
                                         pub_date=blog['pub_date'])
+
+        db_mngr.delete_old_blogs()

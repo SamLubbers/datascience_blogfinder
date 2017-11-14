@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from datetime import datetime, timedelta
 
 class DatabaseManager(object):
     def __init__(self, db):
@@ -20,6 +21,18 @@ class DatabaseManager(object):
                 self.cur.execute('''INSERT INTO blogs VALUES (?, ?, ?, ?)''', (url, host, title, pub_date))
         except sqlite3.IntegrityError:
             pass # avoid the same website from being added twice
+
+    def delete_old_blogs(self):
+        with self.con:
+            self.cur.execute('select * from blogs')
+            for row in self.cur.fetchall():
+                url = row[0]
+                pub_date = row[3]
+                timezone = pub_date.tzinfo
+                now_in_timezone = datetime.now(timezone)
+                one_year_ago = now_in_timezone - timedelta(days=365)
+                if pub_date < one_year_ago:
+                    self.cur.execute('delete from blogs where url=?', url)
 
     def __del__(self):
         self.con.close()
