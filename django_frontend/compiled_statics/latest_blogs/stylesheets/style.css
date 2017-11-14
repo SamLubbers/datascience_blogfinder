@@ -1,3 +1,17 @@
-body { color: #354048; font-size: 16px; font-family: sans-serif; }
+body { font-family: sans-serif; }
+
+#title { font-family: 'Playfair Display', serif; color: #354048; text-align: center; margin-top: 5%; }
+
+@media (max-width: 475px) { #title { font-size: 30px; } }
+
+.gray { color: #354048; }
+
+.col-centered { float: none; margin: 0 auto; }
+
+.card-columns { display: inline-block; }
+
+@media (max-width: 1100px) { .card-columns { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; } }
+
+@media (max-width: 575px) { .card-columns { -webkit-column-count: 1; -moz-column-count: 1; column-count: 1; } }
 
 /*# sourceMappingURL=../../../../../../../../../static/latest_blogs/stylesheets/style.css.map */
