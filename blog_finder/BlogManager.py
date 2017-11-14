@@ -1,10 +1,10 @@
 import threading
-from settings import SENTINEL
-from DatabaseManager import DatabaseManager
 import json
+import re
 from datetime import datetime
 from urllib.parse import urlparse
-import re
+from blog_finder.settings import SENTINEL
+from blog_finder.DatabaseManager import DatabaseManager
 
 class BlogManager(threading.Thread):
     def __init__(self, blog_queue):

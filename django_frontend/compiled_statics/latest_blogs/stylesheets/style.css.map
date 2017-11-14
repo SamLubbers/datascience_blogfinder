@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "../../../Users/Samu/Projects/datascience_blogfinder/django_frontend/latest_blogs/static/latest_blogs/stylesheets/style.css",
+	"sources": [
+		"../../../Users/Samu/Projects/datascience_blogfinder/django_frontend/latest_blogs/static/latest_blogs/stylesheets/style.scss"
+	],
+	"names": [],
+	"mappings": "AAIA,AAAA,IAAI,CAAA,EACH,KAAK,EAJI,OAAO,EAKhB,SAAS,EAAE,IAAI,EACf,WAAW,EAAE,UAAU,GACvB"
+}

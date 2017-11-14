@@ -1,9 +1,8 @@
+import json
 import threading
 import requests
-from queue import Queue
 from bs4 import BeautifulSoup
-import json
-from settings import SENTINEL
+from blog_finder.settings import SENTINEL
 
 class BlogExtractor(threading.Thread):
     def __init__(self, rss_queue, blog_queue):

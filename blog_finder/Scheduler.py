@@ -1,8 +1,7 @@
-from queue import Queue
 import requests
 import threading
 from bs4 import BeautifulSoup
-from settings import SENTINEL
+from blog_finder.settings import SENTINEL
 
 
 class Scheduler(threading.Thread):

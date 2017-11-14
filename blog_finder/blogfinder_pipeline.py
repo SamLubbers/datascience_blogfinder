@@ -1,7 +1,7 @@
 from queue import Queue
-from Scheduler import Scheduler
-from BlogExtractor import BlogExtractor
-from BlogManager import BlogManager
+from blog_finder.Scheduler import Scheduler
+from blog_finder.BlogExtractor import BlogExtractor
+from blog_finder.BlogManager import BlogManager
 
 def main():
     rss_queue = Queue(10)
