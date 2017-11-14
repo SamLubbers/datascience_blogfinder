@@ -1,9 +1,17 @@
 // invoke './manage.py compilescss' to compile manually
 $primary: #354048;
 $secondary: #5AACFC;
+$break_small: 475px;
 
 body{
-	color: $primary;
-	font-size: 16px;
 	font-family: sans-serif;
+}
+#title{
+    font-family: 'Playfair Display', serif;
+    color: $primary;
+    text-align: center;
+    margin-top: 5%;
+    @media screen and (max-width: $break_small){
+        font-size: 30px;
+    }
 }
