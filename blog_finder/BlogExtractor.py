@@ -3,6 +3,7 @@ import threading
 import requests
 from bs4 import BeautifulSoup
 from blog_finder.settings import SENTINEL
+from blog_finder.update_sources import remove_invalid_sources
 
 class BlogExtractor(threading.Thread):
     def __init__(self, rss_queue, blog_queue):
@@ -11,12 +12,11 @@ class BlogExtractor(threading.Thread):
         self.blog_queue = blog_queue
 
     def get_url_text(self, url):
-        res = requests.get(url)
+        res = requests.get(url, timeout=5)
         # raise error if request fails
         res.raise_for_status()
         return res.text
 
-    # TODO handle exception if rss has no items, must discard rss
     def extract_blogs_from_rss(self, rss):
         blogs = []
         soup = BeautifulSoup(rss, 'xml')
@@ -37,15 +37,18 @@ class BlogExtractor(threading.Thread):
         q.put(sentinel)
 
     def run(self):
+        invalid_rss_urls = []
         for rss_url in iter(self.rss_queue.get, SENTINEL):
             try:
                 rss = self.get_url_text(rss_url)
                 blogs = self.extract_blogs_from_rss(rss)
             except Exception as err:
-                # if some url does not work or scraping fails ignore and proceed with next url
-                pass
+                # if some url does not work or scraping fails catch error and
+                # add it to the list of invalid_urls in order for it to be removed from the list of sources
+                invalid_rss_urls.append(rss_url)
             else:
                 # if no error occurs push link to blog to the blog_queue
                 self.push_list_to_queue(blogs, self.blog_queue)
 
+        remove_invalid_sources(invalid_rss_urls)
         self.signal_queue_end(self.blog_queue, SENTINEL)
