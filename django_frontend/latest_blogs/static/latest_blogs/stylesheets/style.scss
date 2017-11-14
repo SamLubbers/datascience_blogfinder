@@ -1,0 +1,9 @@
+// invoke './manage.py compilescss' to compile manually
+$primary: #354048;
+$secondary: #5AACFC;
+
+body{
+	color: $primary;
+	font-size: 16px;
+	font-family: sans-serif;
+}

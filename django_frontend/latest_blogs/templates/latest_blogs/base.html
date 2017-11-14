@@ -1,14 +1,15 @@
+{% load sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>{% block title %} Data science blogs {% endblock %}</title>
-
     <meta charset="UTF-8">
     <!--support for responsive mobile first-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<!--Personal SCSS-->
+		<link href="{% sass_src 'latest_blogs/stylesheets/style.scss' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div>
