@@ -9,18 +9,15 @@ class Scheduler(threading.Thread):
         super().__init__()
         self.datascience_blogs = 'https://github.com/rushter/data-science-blogs'
         self.rss_queue = rss_queue
+        self.sources_file = 'sources.txt'
 
-    def get_url_text(self, url):
-        res = requests.get(url)
-        # raise error if request fails
-        res.raise_for_status()
-        return res.text
-
-    def extract_rss_urls(self, html):
-        soup = BeautifulSoup(html, "html.parser")
-        a_tags = soup.find_all('a')
-        rss_urls = [tag['href'] for tag in a_tags if tag.string == '(RSS)']
-        return rss_urls
+    def get_rss_urls(self, file_name):
+        urls = []
+        with open(file_name, 'r') as file:
+            for line in file:
+                line = line.rstrip('\n')
+                urls.append(line)
+        return urls
 
     def push_list_to_queue(self, l, q):
         for item in l:
@@ -30,7 +27,9 @@ class Scheduler(threading.Thread):
         q.put(sentinel)
 
     def run(self):
-        html = self.get_url_text(self.datascience_blogs)
-        rss_urls = self.extract_rss_urls(html)
+
+        rss_urls = self.get_rss_urls(self.sources_file)
+        for url in rss_urls:
+            print(url)
         self.push_list_to_queue(rss_urls, self.rss_queue)
         self.signal_queue_end(self.rss_queue, SENTINEL)
