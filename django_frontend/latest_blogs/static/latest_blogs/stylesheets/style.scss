@@ -1,17 +1,42 @@
 // invoke './manage.py compilescss' to compile manually
 $primary: #354048;
 $secondary: #5AACFC;
-$break_small: 475px;
+$break-small: 475px;
+$break-medium: 575px;
+$break-large: 1100px;
 
+ 
 body{
 	font-family: sans-serif;
 }
+
 #title{
     font-family: 'Playfair Display', serif;
     color: $primary;
     text-align: center;
     margin-top: 5%;
-    @media screen and (max-width: $break_small){
+    @media (max-width: $break-small){
         font-size: 30px;
     }
+}
+
+.gray{
+	color: $primary;
+}
+.col-centered{
+	float: none;
+	margin: 0 auto;
+}
+.card-columns{
+	display: inline-block;
+	@media (max-width: $break-large) {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+	}
+	@media (max-width: $break-medium) {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
 }
