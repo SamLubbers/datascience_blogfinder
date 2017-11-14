@@ -1,15 +1,10 @@
-import requests
 import threading
-from bs4 import BeautifulSoup
-from blog_finder.settings import SENTINEL
-
+from blog_finder.settings import SENTINEL, SOURCES_FILE
 
 class Scheduler(threading.Thread):
     def __init__(self, rss_queue):
         super().__init__()
-        self.datascience_blogs = 'https://github.com/rushter/data-science-blogs'
         self.rss_queue = rss_queue
-        self.sources_file = 'sources.txt'
 
     def get_rss_urls(self, file_name):
         urls = []
@@ -27,9 +22,6 @@ class Scheduler(threading.Thread):
         q.put(sentinel)
 
     def run(self):
-
-        rss_urls = self.get_rss_urls(self.sources_file)
-        for url in rss_urls:
-            print(url)
+        rss_urls = self.get_rss_urls(SOURCES_FILE)
         self.push_list_to_queue(rss_urls, self.rss_queue)
         self.signal_queue_end(self.rss_queue, SENTINEL)

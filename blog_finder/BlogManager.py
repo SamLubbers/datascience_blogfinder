@@ -36,7 +36,6 @@ class BlogManager(threading.Thread):
         db_mngr = DatabaseManager('datascience_blogs.db')
         for blog in iter(self.blog_queue.get, SENTINEL):
             try:
-                print(blog)
                 blog = self.parse_blog(blog)
             except Exception:
                 pass # if exception occurs while parsing simply do not store blog in the db
