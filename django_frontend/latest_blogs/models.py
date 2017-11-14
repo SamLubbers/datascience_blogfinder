@@ -11,10 +11,13 @@ from django.db import models
 
 
 class Blogs(models.Model):
-    url = models.TextField(unique=True, blank=True, null=True)
-    host = models.TextField(blank=True, null=True)
-    title = models.TextField(blank=True, null=True)
-    pub_date = models.TextField(blank=True, null=True)  # This field type is a guess.
+    url = models.TextField(primary_key=True, unique=True)
+    host = models.TextField()
+    title = models.TextField()
+    pub_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         managed = False
