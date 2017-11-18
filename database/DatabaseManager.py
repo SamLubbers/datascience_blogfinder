@@ -1,11 +1,12 @@
-import os
+from os import path, getcwd
 import sqlite3
 from datetime import datetime, timedelta
 
 class DatabaseManager(object):
-    def __init__(self, db):
-        project_path = os.path.dirname(os.getcwd())
-        db_path = os.path.join(project_path, db)
+    def __init__(self, db_name):
+        project_path = path.dirname(getcwd())
+        db_dir = 'database'
+        db_path = path.join(project_path, db_dir, db_name)
         self.con = sqlite3.connect(db_path, detect_types=sqlite3.PARSE_DECLTYPES)
         self.cur = self.con.cursor()
         self.create_blogs_table()

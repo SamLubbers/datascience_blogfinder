@@ -5,7 +5,7 @@ import pytz
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from blog_finder.settings import SENTINEL
-from blog_finder.DatabaseManager import DatabaseManager
+from database.DatabaseManager import DatabaseManager
 
 class BlogManager(threading.Thread):
     def __init__(self, blog_queue):
