@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'datascience_blogs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'datascience_blogs.db'),
+        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'database', 'datascience_blogs.db'),
     }
 }
 
