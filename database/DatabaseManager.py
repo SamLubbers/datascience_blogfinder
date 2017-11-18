@@ -35,5 +35,10 @@ class DatabaseManager(object):
                 if pub_date < one_year_ago:
                     self.cur.execute('delete from blogs where url=?', url)
 
+    def get_all_blogs(self):
+        with self.con:
+            self.cur.execute('select * from blogs')
+            return self.cur.fetchall()
+
     def __del__(self):
         self.con.close()

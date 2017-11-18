@@ -6,3 +6,6 @@ __pycache__/
 
 # databases
 *.db
+
+# csv files
+*.csv

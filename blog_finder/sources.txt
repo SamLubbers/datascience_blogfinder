@@ -91,7 +91,6 @@ http://317070.github.io/feed.xml
 http://www.joyofdata.de/blog/feed/
 http://jvns.ca/atom.xml
 http://colinpriest.com/feed/
-http://www.kennybastani.com/feeds/posts/default?alt=rss
 http://kldavenport.com/feed/
 http://kvfrans.com/rss/
 http://korbonits.github.io/feed.xml
