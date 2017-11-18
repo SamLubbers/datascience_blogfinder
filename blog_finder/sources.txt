@@ -42,7 +42,6 @@ http://datasciencevademecum.wordpress.com/feed/
 http://dataaspirant.wordpress.com/feed/
 https://medium.com/feed/okcupid/tagged/data
 http://datagenetics.com/feed/rss.xml
-http://www.dataiku.com/feed.xml
 http://blog.datalook.io/feed/
 https://datanice.wordpress.com/feed/
 https://www.dataquest.io/blog/atom.xml
@@ -75,7 +74,6 @@ http://fa.bianp.net/blog/feed/
 http://blog.fastforwardlabs.com/feed.xml
 http://fastml.com/atom.xml
 http://florianhartl.com/feed/
-http://flowingdata.com/feed/
 http://fullstackml.com/feed/
 http://www.chioka.in/feed.xml
 http://www.gregreda.com/feeds/all.atom.xml
@@ -93,7 +91,6 @@ http://www.johnmyleswhite.com/feed/
 http://317070.github.io/feed.xml
 http://www.joyofdata.de/blog/feed/
 http://jvns.ca/atom.xml
-http://feeds.feedburner.com/kdnuggets-data-mining-analytics
 http://colinpriest.com/feed/
 http://www.kennybastani.com/feeds/posts/default?alt=rss
 http://kldavenport.com/feed/
@@ -103,7 +100,6 @@ http://bickson.blogspot.com/feeds/posts/default
 https://blog.lateral.io/feed/
 http://lazyprogrammer.me/feed/
 https://learnanalyticshere.wordpress.com/feed/
-http://www.learndatasci.com/feed/
 http://learningwithdata.com/feeds/all.atom.xml
 http://daoudclarke.github.io/atom.xml
 https://itsalocke.com/feed
@@ -160,7 +156,6 @@ http://feeds.feedburner.com/barmaley-exe-blog-feed
 http://randyzwitch.com/feed.xml
 http://rare-technologies.com/feed/
 http://rayli.net/blog/feed/
-http://blog.revolutionanalytics.com/atom.xml
 http://rinuboney.github.io/feed.xml
 http://rnduja.github.io/feed.xml
 https://medium.com/feed/@rchang

@@ -4,6 +4,7 @@ from blog_finder.BlogExtractor import BlogExtractor
 from blog_finder.BlogManager import BlogManager
 
 def main():
+    print('Started extracting blogs from all over the internet, please wait until finished...')
     rss_queue = Queue(10)
     blog_queue = Queue(100)
     scheduler = Scheduler(rss_queue)
@@ -14,5 +15,7 @@ def main():
     extractor.start()
     manager.start()
 
+    manager.join()
+    print('blog extraction finished. You can view extracted blogs from the django frontend')
 if __name__ == '__main__':
     main()
