@@ -1,6 +1,7 @@
 import threading
 import json
 import re
+import pytz
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from blog_finder.settings import SENTINEL
@@ -17,9 +18,12 @@ class BlogManager(threading.Thread):
         pub_date = re.sub(' +', ' ', pub_date) # remove duplicate spaces
         timezone = pub_date.split(' ')[4]
         if '+' not in timezone and '-' not in timezone:
-            dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S %Z')
+            dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S')
         else:
             dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S %z')
+        # convert datetime to localtime
+        dt = pytz.utc.normalize(dt.astimezone(pytz.utc))  # transform time to UTC
+        dt = dt.replace(tzinfo=None) # eliminate timezone info to store in db
         return dt
 
     def parse_blog(self, blog_json):
