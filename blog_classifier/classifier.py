@@ -10,11 +10,13 @@ import nltk
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 
+
 def load_dataset(dataset_name):
     datasets_dir = path.join(getcwd(), 'datasets')
     dataset_path = path.join(datasets_dir, dataset_name)
     dataset = pd.read_csv(dataset_path)
     return dataset
+
 
 def process_title(title):
     title = re.sub('[^a-zA-Z]', ' ', title)
@@ -23,6 +25,7 @@ def process_title(title):
     title = [word for word in title if not word in set(stopwords.words('english'))]
     title = ' '.join(title)
     return title
+
 
 def extract_top_words(all_words, n):
     """
@@ -35,7 +38,21 @@ def extract_top_words(all_words, n):
     top_words = [word_frequency[0] for word_frequency in word_frequencies]
     return top_words
 
-# TODO create feature extractor that creates bag of words
+def feature_extractor(title, word_features):
+    """
+    converts a blog title to a bag of words, indicating if it contains the words specified by word_features
+    :param title: title of a blog
+    :param word_features: list of words composing the bag of words
+    :return: bag of words, indicating which words this title contains
+    """
+    title_words = set(title.split())
+    title_features = {}
+
+    for word in word_features:
+        title_features['contains({})'.format(word)] = (word in title_words)
+
+
+    return title_features
 
 # TODO create featuresets associating extracted features from titles to it's label
 
@@ -56,4 +73,5 @@ if __name__ == '__main__':
         for word in blog_title.split():
             all_words.append(word)
 
-    word_features = extract_top_words(all_words, 1500)
+    word_features = extract_top_words(all_words, 1000)
+    
