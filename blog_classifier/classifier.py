@@ -24,7 +24,16 @@ def process_title(title):
     title = ' '.join(title)
     return title
 
-# TODO remove duplicates by creating a frequency distribution and converting to list
+def extract_top_words(all_words, n):
+    """
+    extract the top n words appearing in a list
+    :param all_words: list of words
+    :return: top n number of words
+    """
+    all_words_freq_dist = nltk.FreqDist(all_words) # create frequency distribution of all words
+    word_frequencies = all_words_freq_dist.most_common(n)
+    top_words = [word_frequency[0] for word_frequency in word_frequencies]
+    return top_words
 
 # TODO create feature extractor that creates bag of words
 
@@ -46,3 +55,5 @@ if __name__ == '__main__':
         processed_titles.append(blog_title)
         for word in blog_title.split():
             all_words.append(word)
+
+    word_features = extract_top_words(all_words, 1500)
