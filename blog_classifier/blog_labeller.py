@@ -2,8 +2,9 @@
 
 For every blog in the database it prints the title and the user labels it.
 Results are stored in a csv file, which will be used as the dataset to train
-and test the classifier
+and test the classifier.
 
+Run only if dataset does not exist yet and you need to create data to train the classifier
 """
 from os import path
 import csv
