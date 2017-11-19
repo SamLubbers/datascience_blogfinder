@@ -11,7 +11,7 @@ import csv
 from database.DatabaseManager import DatabaseManager
 
 blogs_db_name = 'datascience_blogs.db'
-csv_name = 'labelled_urls.csv'
+csv_name = 'labelled_blogs.csv'
 datasets_dir = 'datasets'
 csv_path = path.join(datasets_dir, csv_name)
 
