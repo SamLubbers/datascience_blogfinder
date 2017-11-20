@@ -1,5 +1,8 @@
+"""testing of data science blog classifier"""
+
 from blog_classifier.classifier import *
 
+# testing on the test set
 y_pred = classifier.predict(X_test)
 
 from sklearn.metrics import confusion_matrix
@@ -14,11 +17,12 @@ accuracy = total_correct_predictions / test_set_size
 
 print('accuracy of our data science blog classifier is: %f' % accuracy)
 
+# cross validation testing
 from sklearn.model_selection import cross_val_score
 accuracies = cross_val_score(estimator=classifier,
-                             X = X_train,
-                             y = y_train,
-                             cv = 10)
+                             X=X_train,
+                             y=y_train,
+                             cv=10)
 
 print('accruacy with cross validations is: %f, with a standard error of %f' %
       (accuracies.mean(), accuracies.std()))
