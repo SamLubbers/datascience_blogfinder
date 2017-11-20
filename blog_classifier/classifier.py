@@ -18,16 +18,18 @@ nltk.download('stopwords')
 
 corpus = []
 
-for index, blog in dataset.iterrows():
-    title = blog['title']
+def process_title(title):
     title = re.sub('[^a-zA-Z]', ' ', title)
     title = title.lower()
     title = title.split()
     title = [word for word in title if word not in set(stopwords.words('english'))]
     title = ' '.join(title)
+    return title
+
+for index, blog in dataset.iterrows():
+    title = blog['title']
+    title = process_title(title)
     corpus.append(title)
-
-
 
 from sklearn.feature_extraction.text import CountVectorizer
 
