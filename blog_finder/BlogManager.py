@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from blog_finder.settings import SENTINEL
 from database.DatabaseManager import DatabaseManager
+from blog_classifier.classify_blog import is_datascience_blog
 
 class BlogManager(threading.Thread):
     def __init__(self, blog_queue):
@@ -55,8 +56,7 @@ class BlogManager(threading.Thread):
             except Exception:
                 pass  # if exception occurs while parsing simply do not store blog in the db
             else:
-                # store blog in database only if it has been published less than a year ago
-                if self.recent_blog(blog['pub_date']):
+                if is_datascience_blog(blog['title']) and self.recent_blog(blog['pub_date']):
                     db_mngr.insert_blog(url=blog['url'],
                                         host=blog['host'],
                                         title=blog['title'],

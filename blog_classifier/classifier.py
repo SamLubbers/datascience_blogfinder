@@ -6,7 +6,8 @@ a naive bayes classifier is trained in order to predict if a future extracted bl
 import pandas as pd
 from os import path, getcwd
 
-datasets_dir = path.join(getcwd(), 'datasets')
+project_dir = path.dirname(getcwd())
+datasets_dir = path.join(project_dir, 'blog_classifier', 'datasets')
 dataset_name = 'labelled_blogs.csv'
 dataset_path = path.join(datasets_dir, dataset_name)
 dataset = pd.read_csv(dataset_path)
@@ -33,7 +34,7 @@ for index, blog in dataset.iterrows():
 
 from sklearn.feature_extraction.text import CountVectorizer
 
-cv = CountVectorizer(max_features=80)
+cv = CountVectorizer(max_features=1500)
 
 X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, 1].values
