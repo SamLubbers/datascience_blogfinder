@@ -36,7 +36,8 @@ cv = CountVectorizer(max_features=1500)
 X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, 1].values
 
-# TODO create train and test datasets
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
 # TODO create naive Bayes classifier
 
