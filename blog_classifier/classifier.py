@@ -31,7 +31,7 @@ for index, blog in dataset.iterrows():
 
 from sklearn.feature_extraction.text import CountVectorizer
 
-cv = CountVectorizer(max_features=1000)
+cv = CountVectorizer(max_features=80)
 
 X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, 1].values
@@ -55,5 +55,13 @@ test_set_size = len(y_test)
 
 accuracy = total_correct_predictions / test_set_size
 
-print(accuracy)
+print('accuracy of our data science blog classifier is: %f' % accuracy)
 
+from sklearn.model_selection import cross_val_score
+accuracies = cross_val_score(estimator=classifier,
+                             X = X_train,
+                             y = y_train,
+                             cv = 10)
+
+print('accruacy with cross validations is: %f, with a standard error of %f' %
+      (accuracies.mean(), accuracies.std()))
