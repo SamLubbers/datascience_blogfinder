@@ -65,3 +65,7 @@ accuracies = cross_val_score(estimator=classifier,
 
 print('accruacy with cross validations is: %f, with a standard error of %f' %
       (accuracies.mean(), accuracies.std()))
+
+# serialize classifier to be used in blog_finder
+from sklearn.externals import joblib
+joblib.dump(classifier, 'serialized_classifier')
