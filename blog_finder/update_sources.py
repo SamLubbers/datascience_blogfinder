@@ -1,7 +1,8 @@
+"""updates the file containing the rss source links"""
 from blog_finder.settings import SOURCES_FILE
 
-
 def remove_invalid_sources(invalid_rss_urls):
+    """deletes from the source file the specified link"""
     sources = []
     with open(SOURCES_FILE) as file:
         for line in file:

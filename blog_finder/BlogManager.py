@@ -1,3 +1,4 @@
+"""analyzes the extracted blogs and decides which get stored in the database"""
 import threading
 import json
 import re
@@ -9,12 +10,19 @@ from database.DatabaseManager import DatabaseManager
 from blog_classifier.classify_blog import is_datascience_blog
 
 class BlogManager(threading.Thread):
+    """
+    thread that gets information about a new blog from blog_queue (link to blog, title, publication date...),
+    and stores it in the database according to 2 criteria:
+    1. the classifier must classify it as a data science blog
+    2. the blog must have been posted less than a year ago
+    """
     def __init__(self, blog_queue):
         super().__init__()
         self.blog_queue = blog_queue
         self.blogs_db_name = 'datascience_blogs.db'
 
     def pubdate_to_datetime(self, pub_date):
+        """converts the pubdate extracted form the rss feed onto a python datetime object"""
         pub_date = pub_date.split(',')[1].lstrip() # trim pub_date deleting day of the week
         pub_date = re.sub(' +', ' ', pub_date) # remove duplicate spaces
         timezone = pub_date.split(' ')[4]
@@ -39,7 +47,7 @@ class BlogManager(threading.Thread):
         return blog
 
     def recent_blog(self, blog_pubdate):
-        """returns true if blog has been published less than a year ago"""
+        """returns true if the blog publication date less than a year ago"""
         timezone = blog_pubdate.tzinfo
         now_in_timezone = datetime.now(timezone)
         one_year_ago = now_in_timezone - timedelta(days=365)

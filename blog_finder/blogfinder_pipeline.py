@@ -1,3 +1,7 @@
+"""pipeline that puts together the complete blog_finder functionality
+
+it instantiates 3 threads that work concurrently and uses 2 queues to coordinate the work between those threads
+"""
 from queue import Queue
 from blog_finder.Scheduler import Scheduler
 from blog_finder.BlogExtractor import BlogExtractor
@@ -17,5 +21,6 @@ def main():
 
     manager.join()
     print('blog extraction finished. You can view extracted blogs from the django frontend')
+
 if __name__ == '__main__':
     main()

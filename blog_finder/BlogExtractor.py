@@ -1,3 +1,4 @@
+"""web scraping of blogs from rss feeds"""
 import json
 import threading
 import requests
@@ -6,18 +7,24 @@ from blog_finder.settings import SENTINEL
 from blog_finder.update_sources import remove_invalid_sources
 
 class BlogExtractor(threading.Thread):
+    """
+    thread that gets a link to an rss feed from the rss_queue, scraps all the blogs contained in that link,
+    and pushes all those links to the blog_queue
+    """
     def __init__(self, rss_queue, blog_queue):
         super().__init__()
         self.rss_queue = rss_queue
         self.blog_queue = blog_queue
 
     def get_url_text(self, url):
+        """get request to the rss feed link"""
         res = requests.get(url, timeout=5)
         # raise error if request fails
         res.raise_for_status()
         return res.text
 
     def extract_blogs_from_rss(self, rss):
+        """webscraping of rss feed"""
         blogs = []
         soup = BeautifulSoup(rss, 'xml')
         items = soup.find_all('item')
