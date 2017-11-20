@@ -83,7 +83,6 @@ http://www.inference.vc/rss/
 https://blog.insightdatascience.com/feed
 http://myinspirationinformation.com/feed/
 http://irakorshunova.github.io/feed.xml
-https://blogs.princeton.edu/imabandit/feed/
 http://jtoy.net/atom.xml
 http://www.jeremydjacksonphd.com/?feed=rss2
 https://jessesw.com/feed.xml
@@ -92,7 +91,6 @@ http://317070.github.io/feed.xml
 http://www.joyofdata.de/blog/feed/
 http://jvns.ca/atom.xml
 http://colinpriest.com/feed/
-http://www.kennybastani.com/feeds/posts/default?alt=rss
 http://kldavenport.com/feed/
 http://kvfrans.com/rss/
 http://korbonits.github.io/feed.xml

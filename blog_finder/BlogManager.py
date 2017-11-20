@@ -1,10 +1,12 @@
 import threading
 import json
 import re
+import pytz
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from blog_finder.settings import SENTINEL
-from blog_finder.DatabaseManager import DatabaseManager
+from database.DatabaseManager import DatabaseManager
+from blog_classifier.classify_blog import is_datascience_blog
 
 class BlogManager(threading.Thread):
     def __init__(self, blog_queue):
@@ -17,9 +19,12 @@ class BlogManager(threading.Thread):
         pub_date = re.sub(' +', ' ', pub_date) # remove duplicate spaces
         timezone = pub_date.split(' ')[4]
         if '+' not in timezone and '-' not in timezone:
-            dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S %Z')
+            dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S')
         else:
             dt = datetime.strptime(pub_date, '%d %b %Y %H:%M:%S %z')
+        # convert datetime to localtime
+        dt = pytz.utc.normalize(dt.astimezone(pytz.utc))  # transform time to UTC
+        dt = dt.replace(tzinfo=None) # eliminate timezone info to store in db
         return dt
 
     def parse_blog(self, blog_json):
@@ -51,8 +56,7 @@ class BlogManager(threading.Thread):
             except Exception:
                 pass  # if exception occurs while parsing simply do not store blog in the db
             else:
-                # store blog in database only if it has been published less than a year ago
-                if self.recent_blog(blog['pub_date']):
+                if is_datascience_blog(blog['title']) and self.recent_blog(blog['pub_date']):
                     db_mngr.insert_blog(url=blog['url'],
                                         host=blog['host'],
                                         title=blog['title'],
