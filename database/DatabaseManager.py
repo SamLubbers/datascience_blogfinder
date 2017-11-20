@@ -5,9 +5,7 @@ from datetime import datetime, timedelta
 
 class DatabaseManager(object):
     def __init__(self, db_name):
-        project_path = path.dirname(getcwd())
-        db_dir = 'database'
-        db_path = path.join(project_path, db_dir, db_name)
+        db_path = path.join(getcwd(), 'database', db_name)
         self.con = sqlite3.connect(db_path, detect_types=sqlite3.PARSE_DECLTYPES)
         self.cur = self.con.cursor()
         self.create_blogs_table()

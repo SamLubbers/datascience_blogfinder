@@ -21,6 +21,5 @@ def main():
 
     manager.join()
     print('blog extraction finished. You can view extracted blogs from the django frontend')
-
 if __name__ == '__main__':
     main()

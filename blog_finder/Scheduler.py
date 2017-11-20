@@ -12,7 +12,7 @@ class Scheduler(threading.Thread):
         self.rss_queue = rss_queue
 
     def get_rss_urls(self, file_name):
-        """get all links to rss feeds stored in a txt file"""
+        """get all """
         urls = []
         with open(file_name, 'r') as file:
             for line in file:

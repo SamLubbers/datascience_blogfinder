@@ -7,8 +7,7 @@ import pandas as pd
 from os import path, getcwd
 
 # load dataset
-project_dir = path.dirname(getcwd())
-datasets_dir = path.join(project_dir, 'blog_classifier', 'datasets')
+datasets_dir = path.join(getcwd(), 'blog_classifier', 'datasets')
 dataset_name = 'labelled_blogs.csv'
 dataset_path = path.join(datasets_dir, dataset_name)
 dataset = pd.read_csv(dataset_path)
@@ -35,20 +34,17 @@ for index, blog in dataset.iterrows():
     blog_title = process_title(blog_title)
     corpus.append(blog_title)
 
-# convert bag of words onto a set of vectors
+# convert bag of words onto a  of vectors
 from sklearn.feature_extraction.text import CountVectorizer
 
 cv = CountVectorizer(max_features=1500)
 
-# define features and target variable
 X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, 1].values
 
-# train test split
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
-# naive bayes classifier
 from sklearn.naive_bayes import GaussianNB
 classifier = GaussianNB()
 classifier.fit(X_train, y_train)

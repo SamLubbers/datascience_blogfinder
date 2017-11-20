@@ -1,2 +1,2 @@
 SENTINEL = -1
-SOURCES_FILE = 'sources.txt'
+SOURCES_FILE = 'blog_finder/sources.txt'
