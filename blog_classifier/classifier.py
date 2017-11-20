@@ -27,9 +27,14 @@ for index, blog in dataset.iterrows():
     title = ' '.join(title)
     corpus.append(title)
 
-title_labels = dataset.iloc[:, 1].values
 
-# TODO create count vectorizer
+
+from sklearn.feature_extraction.text import CountVectorizer
+
+cv = CountVectorizer(max_features=1500)
+
+X = cv.fit_transform(corpus).toarray()
+y = dataset.iloc[:, 1].values
 
 # TODO create train and test datasets
 
