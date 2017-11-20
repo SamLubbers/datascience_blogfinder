@@ -3,7 +3,6 @@
 Given a set of blog titles and their associated labels, indicating if the blog corresponds to the topic of data science,
 a naive bayes classifier is trained in order to predict if a future extracted blog is a data science blog
 """
-from nltk.corpus import stopwords
 import pandas as pd
 from os import path, getcwd
 
@@ -14,6 +13,7 @@ dataset = pd.read_csv(dataset_path)
 
 import re
 import nltk
+from nltk.corpus import stopwords
 nltk.download('stopwords')
 
 corpus = []
@@ -42,30 +42,3 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 from sklearn.naive_bayes import GaussianNB
 classifier = GaussianNB()
 classifier.fit(X_train, y_train)
-
-y_pred = classifier.predict(X_test)
-
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-
-correct_negative_predictions = cm[0, 0]
-correct_positive_predictions = cm[1, 1]
-total_correct_predictions = correct_negative_predictions + correct_positive_predictions
-test_set_size = len(y_test)
-
-accuracy = total_correct_predictions / test_set_size
-
-print('accuracy of our data science blog classifier is: %f' % accuracy)
-
-from sklearn.model_selection import cross_val_score
-accuracies = cross_val_score(estimator=classifier,
-                             X = X_train,
-                             y = y_train,
-                             cv = 10)
-
-print('accruacy with cross validations is: %f, with a standard error of %f' %
-      (accuracies.mean(), accuracies.std()))
-
-# serialize classifier to be used in blog_finder
-from sklearn.externals import joblib
-joblib.dump(classifier, 'serialized_classifier')
