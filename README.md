@@ -3,6 +3,7 @@
 Finds the latest data science blogs across the internet in order to make it easier for data scientists across the world to stay up to date with the latest best practices and news in data science.
 
 ## Breakdown
+
 * Extracts the latest blogs from the rss feeds of a predefined set of sources of data science blogs
 * Uses a naive bayes classifier to discard blogs that do not correspond to the topic of data science
 * Stores blogs in sqlite3 database
