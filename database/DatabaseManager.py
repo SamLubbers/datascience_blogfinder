@@ -1,3 +1,4 @@
+"""manages all the connections to the sqlite3 blogs database"""
 from os import path, getcwd
 import sqlite3
 from datetime import datetime, timedelta
@@ -24,6 +25,7 @@ class DatabaseManager(object):
             pass # avoid the same website from being added twice
 
     def delete_old_blogs(self):
+        """deletes blogs older than one year ago"""
         with self.con:
             self.cur.execute('select * from blogs')
             for row in self.cur.fetchall():
@@ -41,4 +43,4 @@ class DatabaseManager(object):
             return self.cur.fetchall()
 
     def __del__(self):
-        self.con.close()
+        self.con.close() # gracefully close connection when object is deleted
