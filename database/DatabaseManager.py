@@ -33,7 +33,7 @@ class DatabaseManager(object):
                 now_in_timezone = datetime.now(timezone)
                 one_year_ago = now_in_timezone - timedelta(days=365)
                 if pub_date < one_year_ago:
-                    self.cur.execute('delete from blogs where url=?', url)
+                    self.cur.execute('delete from blogs where url=?', (url,))
 
     def get_all_blogs(self):
         with self.con:
